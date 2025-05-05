@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cobrar paga</title>
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <h1>Cobrar paga</h1>
+  <div class="input-group">
+    <label>Palabra 1: <input type="text" id="word1" /></label>
+  </div>
+  <div class="input-group">
+    <label>Palabra 2: <input type="text" id="word2" /></label>
+  </div>
+  <button onclick="checkWords()">Enviar respuestas</button>
+
+  <div id="popup">
+    <h2 id="popupMessage"></h2>
+    <p id="popupSubtext"></p>
+    <button onclick="closePopup()">Cerrar</button>
+  </div>
+
+  <script>
+    const correctAnswers = ["respuesta1", "respuesta2"];
+
+    function checkWords() {
+      const word1 = document.getElementById("word1");
+      const word2 = document.getElementById("word2");
+      const inputs = [word1, word2];
+      let correct = true;
+
+      inputs.forEach((input, index) => {
+        if (input.value.trim().toLowerCase() === correctAnswers[index]) {
+          input.disabled = true;
+        } else {
+          correct = false;
+          input.value = "";
+        }
+      });
+
+      const popup = document.getElementById("popup");
+      const message = document.getElementById("popupMessage");
+      const subtext = document.getElementById("popupSubtext");
+
+      if (!correct) {
+        popup.classList.remove("red");
+        message.textContent = "Maaaaal, otro mes que no cobras!";
+        subtext.textContent = "Debes acertar todas para pasar a la siguiente prueba.";
+        popup.style.display = "block";
+      } else {
+        window.location.href = "prueba2.html";
+      }
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prueba 2</title>
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <h1>Prueba 2</h1>
+  <p><strong>¿De qué color es el caballo de Espartaco?</strong></p>
+  <input type="text" id="respuesta" placeholder="Escribe tu respuesta aquí" />
+  <br />
+  <button onclick="verificarRespuesta()">Comprobar</button>
+
+  <div id="popup">
+    <h2 id="popupMessage"></h2>
+    <p id="popupSubtext"></p>
+    <button onclick="cerrarPopup()">Cerrar</button>
+  </div>
+
+  <script>
+    function verificarRespuesta() {
+      const respuesta = document.getElementById("respuesta").value.trim().toLowerCase();
+      const popup = document.getElementById("popup");
+      const popupMessage = document.getElementById("popupMessage");
+      const popupSubtext = document.getElementById("popupSubtext");
+
+      if (respuesta === "negro") {
+        popup.className = "success";
+        popupMessage.textContent = "¡Enhorabuena!";
+        popupSubtext.textContent = "Has logrado superar la actividad. Por fin cobrarás.";
+      } else {
+        popup.className = "error";
+        popupMessage.textContent = "¡Melón, suspendido de por vida!";
+        popupSubtext.textContent = "Inténtalo de nuevo.";
+      }
+      popup.style.display = "block";
+    }
+
+    function cerrarPopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+</body>
+</html>
